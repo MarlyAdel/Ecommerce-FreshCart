@@ -6,7 +6,7 @@ import Loader from '../../../Shared/Loader/Loader'
 import { cartContext } from '../../../../Context/CartContext'
 import { toast } from 'react-toastify'
 import { theme } from 'flowbite-react'
-import ProductItem from './../../../Shared/ProductItem/ProductItem';
+import ProductItem from "../../../Shared/ProductItem/ProductItem";
 
 export default function RecentProducts() {
     
