@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root{
+    --rating-color: #ffc908;
+    --main-color: #0aad0a;
+}
+
+.rating-color{
+    color: var(--rating-color);
+}
+
+.text-main{
+    color: var(--main-color)
+}
+
+.active{
+    @apply bg-main p-1 text-white rounded-md;
+}
+
+.main-layout{
+    @apply flex flex-wrap gap-y-3 mb-8;
+}
