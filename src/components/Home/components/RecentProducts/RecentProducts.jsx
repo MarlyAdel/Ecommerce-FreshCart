@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import { useState } from 'react'
 import { useEffect } from 'react'
 import axios from 'axios'
-import ProductItem from '../../../Shared/ProductItem/productItem'
+import ProductItem from "../../../Shared/ProductItem/ProductItem";
 import Loader from '../../../Shared/Loader/Loader'
 import { cartContext } from '../../../../Context/CartContext'
 import { toast } from 'react-toastify'
