@@ -8,14 +8,21 @@ import { toast } from "react-toastify";
 export default function ProductContent() {
   const [products, setProducts] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
 
   const { addToCart } = useContext(cartContext);
 
   useEffect(() => {
     axios
       .get("https://ecommerce.routemisr.com/api/v1/products")
-      .then(({ data }) => setProducts(data.data))
-      .catch((err) => console.log(err));
+      .then(({ data }) => {
+        setProducts(data.data);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        console.log(err);
+        setIsLoading(false); 
+      });
   }, []);
 
   async function addProductToCart(id) {
@@ -50,7 +57,11 @@ export default function ProductContent() {
         className="w-full p-2 mb-4 border border-gray-300 rounded-md focus:border-green-500 focus:ring-1 focus:ring-green-500 outline-none"
       />
       <div className="main-layout flex-auto">
-        {filteredProducts.length > 0 ? (
+        {isLoading ? (
+          <div className="flex items-center justify-center w-full h-screen">
+            <Loader />
+          </div>
+        ) : filteredProducts.length > 0 ? (
           filteredProducts.map((product) => (
             <ProductItem
               key={product.id}
@@ -59,8 +70,8 @@ export default function ProductContent() {
             />
           ))
         ) : (
-          <div className=" flex items-center justify-center w-full h-screen">
-            <Loader />
+          <div className=" flex items-center justify-center w-full h-60 text-gray-600 font-medium text-xl">
+            No results found 😢
           </div>
         )}
       </div>
