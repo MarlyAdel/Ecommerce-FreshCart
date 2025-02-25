@@ -13,7 +13,6 @@ export default function CartContextProvider(props) {
   const [cartDetails, setCartDetails] = useState(null);
   const [cartId, setCartId] = useState("");
 
- let url = window.location.href;
   
 
   const API_URL = `https://ecommerce.routemisr.com/api/v1/cart`;
@@ -118,7 +117,7 @@ export default function CartContextProvider(props) {
   async function onlinePayment(shippingAddress) {
     try {
       const { data } = await axios.post(
-        `https://ecommerce.routemisr.com/api/v1/orders/checkout-session/${cartId}?url=${url}`,
+        `https://ecommerce.routemisr.com/api/v1/orders/checkout-session/${cartId}?url=http://localhost:5173`,
         { shippingAddress },
         { headers }
       );
