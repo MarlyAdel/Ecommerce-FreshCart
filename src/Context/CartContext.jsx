@@ -1,9 +1,6 @@
-import { useContext, useEffect } from "react";
-import { createContext, useState } from "react";
+import React, { useContext, useEffect, useState, createContext } from "react";
 import { tokenContext } from "./tokenContext";
 import axios from "axios";
-
-
 
 export const cartContext = createContext();
 
@@ -13,15 +10,11 @@ export default function CartContextProvider(props) {
   const [cartDetails, setCartDetails] = useState(null);
   const [cartId, setCartId] = useState("");
 
-  
-
   const API_URL = `https://ecommerce.routemisr.com/api/v1/cart`;
   const ORDER_API_URL = `https://ecommerce.routemisr.com/api/v1/orders`;
   const headers = {
     token,
   };
-
- 
 
   useEffect(() => {
     token && getCart();
@@ -41,7 +34,6 @@ export default function CartContextProvider(props) {
       return { status: "error", message: "Failed to add product" };
     }
   }
-  
 
   //^the cart data
   async function getCart() {
@@ -142,7 +134,10 @@ export default function CartContextProvider(props) {
   //^ To Clear All the Cart
   async function clearCart() {
     try {
-      const { data } = await axios.delete(`https://ecommerce.routemisr.com/api/v1/cart`, { headers });
+      const { data } = await axios.delete(
+        `https://ecommerce.routemisr.com/api/v1/cart`,
+        { headers }
+      );
       if (data.status == "success") {
         setNumOfCartItems(0);
         setCartDetails(null);
@@ -155,12 +150,10 @@ export default function CartContextProvider(props) {
     }
   }
 
-  
-
   useEffect(() => {
     getCart();
   }, [numOfCartItems]);
-  
+
   return (
     <cartContext.Provider
       value={{
@@ -181,4 +174,3 @@ export default function CartContextProvider(props) {
     </cartContext.Provider>
   );
 }
-
