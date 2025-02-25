@@ -75,7 +75,7 @@ export default function AllOrders() {
                   <p className="text-gray-600">
                     Payment: {order.paymentMethodType}
                   </p>
-                  <p className="text-gray-600">Total: EGP{order.totalOrderPrice}</p>
+                  <p className="text-gray-600">Total: EGP {order.totalOrderPrice}</p>
                 </div>
                 <button
                   onClick={() => openModel(order.cartItems)}

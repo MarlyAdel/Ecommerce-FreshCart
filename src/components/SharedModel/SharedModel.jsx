@@ -30,7 +30,7 @@ export default function SharedModel({selectedItems, closeModel}) {
                 <p className="text-gray-500 text-sm">
                   Quantity: {product.count}
                 </p>
-                <p className="text-gray-900 font-semibold">EGP{product.price}</p>
+                <p className="text-gray-900 font-semibold">EGP {product.price}</p>
               </div>
             </div>
           ))}
