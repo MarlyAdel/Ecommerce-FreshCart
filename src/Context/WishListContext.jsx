@@ -7,6 +7,7 @@ export const wishListContext = createContext();
 export default function WishListContextProvider(props) {
   const [wishlist, setWishlist] = useState([]);
   const [token, setToken] = useState(localStorage.getItem("userToken"));
+  const [wishlistUpdated, setWishlistUpdated] = useState(false);
 
   function updateToken() {
     const newToken = localStorage.getItem("userToken");
@@ -34,10 +35,11 @@ export default function WishListContextProvider(props) {
   async function addToWishList(product){
     if (!token) return;
     try {
-    const { data } = await axios.post(`https://ecommerce.routemisr.com/api/v1/wishlist`,{productId : product.id},{ headers: { token } });
+    const { data } = await axios.post(`https://ecommerce.routemisr.com/api/v1/wishlist`,{productId : product.id || product._id},{ headers: { token } });
       
       if (data.status == "success") {
-        setWishlist((wish) => [...wish, product]);
+         setWishlist((prev) => [...prev, product]);
+         setWishlistUpdated((prev) => !prev); 
         toast("It has been successfully added❤️" , {position:"bottom-right", theme:"dark" , type:"success"}); 
       }
       else {
@@ -55,6 +57,7 @@ export default function WishListContextProvider(props) {
     try {
       await axios.delete(`https://ecommerce.routemisr.com/api/v1/wishlist/${productId}`,{ headers: { token } });
        setWishlist((prev) => prev.filter((item) => item.id !== productId)); 
+       setWishlistUpdated((prev) => !prev);
     } 
     catch (error) {
        console.error("Error adding to wishlist:", error);
@@ -67,7 +70,7 @@ export default function WishListContextProvider(props) {
 
   useEffect(() => {
     getWishList();
-  }, [token]);
+  }, [token, wishlistUpdated]);
 
   return (
     <wishListContext.Provider value={{ wishlist, getWishList, addToWishList, removeFromWishList, isInWhishList, updateToken  }}>
