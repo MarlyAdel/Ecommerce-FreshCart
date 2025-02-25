@@ -2,7 +2,7 @@ import React from 'react'
 import { useState } from 'react'
 import { useEffect } from 'react'
 import axios from 'axios'
-import ProductItem from "./../../../Shared/ProductItem/ProductItem";
+import ProductItem from '../../../Shared/ProductItem/productItem'
 
 export default function RelatedProduct(props) {
     const[count, setCount] = useState(0)

@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react'
-import ProductItem from "./../../../Shared/ProductItem/ProductItem";
+import ProductItem from '../Shared/ProductItem/productItem';
 import Loader from '../Shared/Loader/Loader';
 import { cartContext } from '../../Context/CartContext';
 import { toast } from 'react-toastify';
