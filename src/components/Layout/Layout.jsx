@@ -4,17 +4,20 @@ import { useEffect } from "react";
 import styles from "./Layout.module.css";
 import Navbar from "../Navbar/Navbar";
 import Footer from "../Footer/Footer";
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 
 export default function Layout() {
-  const [count, setCount] = useState(0);
+  const location = useLocation();
+
+  const hideFooter = location.pathname === "/login" || location.pathname === "/register";
+  
   return (
     <div>
       <Navbar />
 
       <Outlet />
 
-      <Footer />
+      {!hideFooter && <Footer />}
     </div>
   );
 }
