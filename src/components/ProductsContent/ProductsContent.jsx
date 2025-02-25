@@ -1,9 +1,9 @@
-import axios from 'axios';
-import React, { useContext, useEffect, useState } from 'react'
-import ProductItem from '../Shared/ProductItem/productItem';
-import Loader from '../Shared/Loader/Loader';
-import { cartContext } from '../../Context/CartContext';
-import { toast } from 'react-toastify';
+import axios from "axios";
+import React, { useContext, useEffect, useState } from "react";
+import ProductItem from "../Shared/ProductItem/ProductItem";
+import Loader from "../Shared/Loader/Loader";
+import { cartContext } from "../../Context/CartContext";
+import { toast } from "react-toastify";
 
 export default function ProductContent() {
   const [products, setProducts] = useState([]);
@@ -18,22 +18,23 @@ export default function ProductContent() {
       .catch((err) => console.log(err));
   }, []);
 
-
-  async function addProductToCart(id){
-        try {
-          let data = await addToCart(id);
-          //console.log(data);
-          if (data.status == "success") {
-            toast("Product added successfully✌️" , {position:"bottom-right", theme:"dark" , type:"success"}); 
-          }
-          else {
-            toast.error("Failed to add product to cart: " + data.message); 
-          }
-        } 
-        catch (error) {
-          console.log(error)
-        }
-      }          
+  async function addProductToCart(id) {
+    try {
+      let data = await addToCart(id);
+      //console.log(data);
+      if (data.status == "success") {
+        toast("Product added successfully✌️", {
+          position: "bottom-right",
+          theme: "dark",
+          type: "success",
+        });
+      } else {
+        toast.error("Failed to add product to cart: " + data.message);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   const filteredProducts = products.filter((product) =>
     product.title.toLowerCase().includes(searchTerm.toLowerCase())
