@@ -31,7 +31,7 @@ export default function WishListContextProvider(props) {
     const { data } = await axios.post(`https://ecommerce.routemisr.com/api/v1/wishlist`,{productId : product.id},{ headers });
       
       if (data.status == "success") {
-        setWishlist([...wishlist, product]);
+        await getWishList();
         toast("It has been successfully added❤️" , {position:"bottom-right", theme:"dark" , type:"success"}); 
       }
       else {
