@@ -109,7 +109,7 @@ export default function CartContextProvider(props) {
   async function onlinePayment(shippingAddress) {
     try {
       const { data } = await axios.post(
-        `https://ecommerce.routemisr.com/api/v1/orders/checkout-session/${cartId}?url=https://ecommerce-fresh-cart-eight.vercel.app/allorders`,
+        `https://ecommerce.routemisr.com/api/v1/orders/checkout-session/${cartId}?url=http://ecommerce-fresh-cart-eight.vercel.app`,
         { shippingAddress },
         { headers }
       );
