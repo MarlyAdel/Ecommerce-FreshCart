@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { wishListContext } from "../../../Context/WishListContext";
 
-export default function productItem(props) {
+export default function ProductItem(props) {
   const [count, setCount] = useState(0);
 
   let { imageCover, title, category, price, ratingsAverage, id } =
