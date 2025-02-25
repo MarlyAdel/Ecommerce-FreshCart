@@ -47,8 +47,7 @@ export default function WishListContextProvider(props) {
   async function removeFromWishList(productId){
     try {
       await axios.delete(`https://ecommerce.routemisr.com/api/v1/wishlist/${productId}`,{ headers });
-      let deletedProduct = wishlist.filter((item) => item.id !== productId);
-      setWishlist(deletedProduct);
+       await getWishList();
     } 
     catch (error) {
        console.error("Error adding to wishlist:", error);
