@@ -10,7 +10,7 @@ export default function Checkout() {
    const [isCallingAPI, setIsCallingApI] = useState(false); 
    const[apiError,setApiError] = useState(null) 
    let { cashOnDelivery, onlinePayment } = useContext(cartContext);
-
+   const [successMessage, setSuccessMessage] = useState("");
    let [isOnline, setIsOnline] = useState(false);
 
 
@@ -41,6 +41,7 @@ export default function Checkout() {
   console.log(isOnline)
    try {
     setIsCallingApI(true);
+    setSuccessMessage("");
     if(isOnline){
       let x = await onlinePayment(values); 
       console.log(x);
@@ -49,6 +50,7 @@ export default function Checkout() {
     else{
       let x = await cashOnDelivery(values);  
       console.log(x);
+      setSuccessMessage("✅ Your order is being processed and is now on its way! 🚚");
     }
     
     setApiError(null); 

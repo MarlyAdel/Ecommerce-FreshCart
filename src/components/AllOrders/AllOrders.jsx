@@ -53,7 +53,7 @@ export default function AllOrders() {
 
   return (
     <>
-      <div className="container my-12">
+      <div className="container my-12 h-full">
         <h1 className="text-5xl text-blue-950 text-center font-medium mb-16">
           All Orders
         </h1>
