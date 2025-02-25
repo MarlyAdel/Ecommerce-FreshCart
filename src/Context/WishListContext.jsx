@@ -14,15 +14,15 @@ export default function WishListContextProvider(props) {
   }
 
   // const WISHLIST_API_URL = `https://ecommerce.routemisr.com/api/v1/wishlist`;
-  const headers = {
-    token:localStorage.getItem('userToken')
-  };
+  // const headers = {
+  //   token:localStorage.getItem('userToken')
+  // };
 
  //^ To get products to the whislist
   async function getWishList() {
      if (!token) return;
     try {
-      const { data } = await axios.get(`https://ecommerce.routemisr.com/api/v1/wishlist`,{ headers });
+      const { data } = await axios.get(`https://ecommerce.routemisr.com/api/v1/wishlist`,{ headers: { token } });
       setWishlist([...data?.data]);  
      
     } catch (error) {
@@ -34,10 +34,10 @@ export default function WishListContextProvider(props) {
   async function addToWishList(product){
     if (!token) return;
     try {
-    const { data } = await axios.post(`https://ecommerce.routemisr.com/api/v1/wishlist`,{productId : product.id},{ headers });
+    const { data } = await axios.post(`https://ecommerce.routemisr.com/api/v1/wishlist`,{productId : product.id},{ headers: { token } });
       
       if (data.status == "success") {
-        await getWishList();
+        setWishlist((wish) => [...wish, product]);
         toast("It has been successfully added❤️" , {position:"bottom-right", theme:"dark" , type:"success"}); 
       }
       else {
@@ -53,8 +53,8 @@ export default function WishListContextProvider(props) {
   async function removeFromWishList(productId){
      if (!token) return;
     try {
-      await axios.delete(`https://ecommerce.routemisr.com/api/v1/wishlist/${productId}`,{ headers });
-       await getWishList();
+      await axios.delete(`https://ecommerce.routemisr.com/api/v1/wishlist/${productId}`,{ headers: { token } });
+       setWishlist((prev) => prev.filter((item) => item.id !== productId)); 
     } 
     catch (error) {
        console.error("Error adding to wishlist:", error);
