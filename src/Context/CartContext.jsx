@@ -22,11 +22,7 @@ export default function CartContextProvider(props) {
     token,
   };
 
-  const BASE_URL =
-    process.env.NODE_ENV === "production"
-      ? "https://ecommerce-fresh-cart-eight.vercel.app"
-      : "http://localhost:5173";
-
+ 
 
   useEffect(() => {
     token && getCart();
@@ -122,7 +118,7 @@ export default function CartContextProvider(props) {
   async function onlinePayment(shippingAddress) {
     try {
       const { data } = await axios.post(
-        `https://ecommerce.routemisr.com/api/v1/orders/checkout-session/${cartId}?url=${BASE_URL}`,
+        `https://ecommerce.routemisr.com/api/v1/orders/checkout-session/${cartId}?url=http://localhost:3000`,
         { shippingAddress },
         { headers }
       );
