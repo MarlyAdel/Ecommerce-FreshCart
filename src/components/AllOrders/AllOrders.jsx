@@ -1,6 +1,4 @@
-import React, { useContext } from "react";
-import { useState } from "react";
-import { useEffect } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { cartContext } from "../../Context/CartContext";
 import { tokenContext } from "../../Context/tokenContext";
 import { jwtDecode } from "jwt-decode";
