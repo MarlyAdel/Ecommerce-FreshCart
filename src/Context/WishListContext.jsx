@@ -6,8 +6,12 @@ export const wishListContext = createContext();
 
 export default function WishListContextProvider(props) {
   const [wishlist, setWishlist] = useState([]);
-  
+  const [token, setToken] = useState(localStorage.getItem("userToken"));
 
+  function updateToken() {
+    const newToken = localStorage.getItem("userToken");
+    setToken(newToken);
+  }
 
   // const WISHLIST_API_URL = `https://ecommerce.routemisr.com/api/v1/wishlist`;
   const headers = {
@@ -16,6 +20,7 @@ export default function WishListContextProvider(props) {
 
  //^ To get products to the whislist
   async function getWishList() {
+     if (!token) return;
     try {
       const { data } = await axios.get(`https://ecommerce.routemisr.com/api/v1/wishlist`,{ headers });
       setWishlist([...data?.data]);  
@@ -27,6 +32,7 @@ export default function WishListContextProvider(props) {
 
   //^ To add products to the whislist
   async function addToWishList(product){
+    if (!token) return;
     try {
     const { data } = await axios.post(`https://ecommerce.routemisr.com/api/v1/wishlist`,{productId : product.id},{ headers });
       
@@ -45,6 +51,7 @@ export default function WishListContextProvider(props) {
 
   //^Remove product from wishlist
   async function removeFromWishList(productId){
+     if (!token) return;
     try {
       await axios.delete(`https://ecommerce.routemisr.com/api/v1/wishlist/${productId}`,{ headers });
        await getWishList();
@@ -60,10 +67,10 @@ export default function WishListContextProvider(props) {
 
   useEffect(() => {
     getWishList();
-  },[])
+  }, [token]);
 
   return (
-    <wishListContext.Provider value={{ wishlist, getWishList, addToWishList, removeFromWishList, isInWhishList }}>
+    <wishListContext.Provider value={{ wishlist, getWishList, addToWishList, removeFromWishList, isInWhishList, updateToken  }}>
       {props.children}
     </wishListContext.Provider>
   );
