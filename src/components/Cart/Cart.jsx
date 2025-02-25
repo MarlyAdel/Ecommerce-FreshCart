@@ -61,7 +61,7 @@ export default function Cart() {
               <h3 className="text-lg sm:text-xl">
                 Total Cart Price:{" "}
                 <span className="text-main font-medium">
-                  ${cartDetails.data.totalCartPrice}
+                  EGP{cartDetails.data.totalCartPrice}
                 </span>
               </h3>
             </div>
@@ -91,7 +91,7 @@ export default function Cart() {
                     <h2 className="text-lg font-semibold text-gray-900">
                       {product.product.title}
                     </h2>
-                    <p className="text-gray-500 text-sm">${product.price}</p>
+                    <p className="text-gray-500 text-sm">EGP{product.price}</p>
                     <div className="flex justify-center sm:justify-start items-center mt-2">
                       <button
                         onClick={() =>
