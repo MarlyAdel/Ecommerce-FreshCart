@@ -13,7 +13,7 @@ export default function CartContextProvider(props) {
   const [cartDetails, setCartDetails] = useState(null);
   const [cartId, setCartId] = useState("");
 
- let url = window.location.url
+ let url = window.location.href;
   
 
   const API_URL = `https://ecommerce.routemisr.com/api/v1/cart`;
