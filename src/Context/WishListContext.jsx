@@ -19,12 +19,13 @@ export default function WishListContextProvider(props) {
   //   token:localStorage.getItem('userToken')
   // };
 
+  useEffect(() => {
+    token && getWishList();
+  }, [token]);
+
  //^ To get products to the whislist
   async function getWishList() {
-      if (!token) {
-        setWishlist([]); 
-        return;
-      }
+    if (!token) return;
     try {
       const { data } = await axios.get(`https://ecommerce.routemisr.com/api/v1/wishlist`,{ headers: { token } });
       setWishlist([...data?.data]);  
@@ -69,9 +70,7 @@ export default function WishListContextProvider(props) {
     return wishlist.some((item) => item.id == productId)
   }
 
-  useEffect(() => {
-    getWishList();
-  }, [token]);
+  
 
   return (
     <wishListContext.Provider value={{ wishlist, getWishList, addToWishList, removeFromWishList, isInWhishList, updateToken  }}>
