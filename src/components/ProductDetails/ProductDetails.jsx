@@ -9,6 +9,7 @@ import Loader from '../Shared/Loader/Loader'
 import { cartContext } from '../../Context/CartContext'
 import { toast } from 'react-toastify'
 import { wishListContext } from '../../Context/WishListContext'
+import { Helmet } from 'react-helmet'
 
 
 
@@ -70,6 +71,9 @@ export default function ProductDetails() {
 
   return (
     <>
+      <Helmet>
+        <title>{details?.title}</title>
+      </Helmet>
       {details && (
         <div className="main-layout container mx-auto items-center py-10 overflow-hidden">
           <div className="w-full md:w-4/12">

@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { useEffect } from 'react'
 import { cartContext } from '../../Context/CartContext';
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 
 export default function Cart() {
   const [count, setCount] = useState(0);
@@ -41,6 +42,9 @@ export default function Cart() {
 
   return (
     <>
+      <Helmet>
+        <title>Cart</title>
+      </Helmet>
       {cartDetails ? (
         cartDetails.data.products.length === 0 ? (
           <h1 className="text-center text-3xl sm:text-5xl py-20 sm:py-48 font-medium md:h-full">

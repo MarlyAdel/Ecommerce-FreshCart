@@ -22,6 +22,7 @@ import ForgotPassword from './components/ForgotPassword/ForgotPassword';
 import VerifyCode from './components/VerifyCode/VerifyCode';
 import ResetPassword from './components/ResetPassword/ResetPassword';
 import WishList from './components/WishList/WishList';
+import { Helmet } from "react-helmet";
 
 
 
@@ -68,7 +69,9 @@ function App() {
 
   return (
     <>
-      
+      <Helmet>
+        <title>FreshCart</title>
+      </Helmet>
         <RouterProvider router={routes} />
         <ToastContainer />
       

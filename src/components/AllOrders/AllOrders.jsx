@@ -4,6 +4,7 @@ import { tokenContext } from "../../Context/tokenContext";
 import { jwtDecode } from "jwt-decode";
 import SharedModel from "../SharedModel/SharedModel";
 import Loader from "../Shared/Loader/Loader";
+import { Helmet } from "react-helmet";
 
 
 
@@ -51,6 +52,9 @@ export default function AllOrders() {
 
   return (
     <>
+    <Helmet>
+      <title>AllOrders</title>
+    </Helmet>
       <div className="container my-12 h-full">
         <h1 className="text-5xl text-blue-950 text-center font-medium mb-16">
           All Orders
